@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
-func main() {
+func //main() {
 
 	//string Array
 
@@ -34,24 +35,15 @@ func main() {
 
 	//Sceond Practice
 
-	//var Country []string
+	var Country []string
 
-	//Country = append(Country, "America\n", "Canada\n", "Switzerland\n", "Finland\n", "ArabEmarates\n")
+	Country = append(Country, "America\n", "Canada\n", "Switzerland\n", "Finland\n", "ArabEmarates\n")
 
 	//fmt.Println(Country, len(Country))
 
 	//fmt.Printf("%T", Country)
 
-	//b := reflect.TypeOf(Country).Kind().String()
-	//fmt.Println(b)
+	b := reflect.TypeOf(Country).Kind().String()
+	fmt.Println(b)
 
-	//MAP
-
-	m := make(map[string]string)
-	m["Azizul"] = "5"
-	m["Address"] = "Barishal"
-	m["Home"] = "PatuAkhali"
-	//fmt.Println(m["Azizul"])
-	fmt.Println(m)
-	delete(m, "Address")
 }
