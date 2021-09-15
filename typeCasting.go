@@ -1,7 +1,6 @@
 // package main
 
 // import "fmt"
-
 // func main() {
 // 	var sum int = 20
 // 	var count int = 8
@@ -11,6 +10,7 @@
 
 // 	fmt.Printf("Value of mean : %f\n", mean)
 // }
+
 package main
 
 import (
