@@ -17,6 +17,7 @@ Passenger string
 Ticket string
 
 Pick string
+LandingAddress string
 
 
 }
@@ -38,6 +39,7 @@ A.setNumber="Vip:1,Vip:2...normal: 1,2,3,4,5,6,7,8,9,10"
 
 A.Passenger="Vip:1.Atiqur Rahman,Vip:2.Sadiqa.."
 A.Pick="USA"
+A.LandingAddress="Swithzerland"
 
 fmt.Println( A,A.pilot)
 }*/
