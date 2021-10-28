@@ -14,7 +14,7 @@ func main() {
 
 	number := 10
 	squareNum := func() int {
-		number *= number
+		number += number
 		return number
 	}
 
