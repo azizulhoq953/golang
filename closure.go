@@ -18,7 +18,7 @@ func main() {
 		return number
 	}
 
-	fmt.Println(squareNum())
+	fmt.Println(squareNum()) //every print increament number wise
 	fmt.Println(squareNum())
 	fmt.Println(squareNum())
 
