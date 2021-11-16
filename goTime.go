@@ -1,5 +1,5 @@
 
-package main  
+/*package main  
 import (  
     "fmt"  
     "time"  
@@ -17,6 +17,29 @@ func main() {
     // convert diff to days  
     days := int(diff.Hours() / 24)  
     fmt.Printf("30th March 2017 was %d days ago \n", days)  
+} */
+
+
+//Go Epoch nanoSecond MiliSecond etc.
+package main  
+import "fmt"  
+import "time"  
+func main() {  
+  
+    p := fmt.Println  
+    current_time := time.Now()  
+    secs := current_time.Unix()  
+    nanos := current_time.UnixNano()  
+  
+    fmt.Println(current_time)  
+  
+    millis := nanos / 1000000  
+    p(secs)  
+    p(millis)  
+    p(nanos)  
+    p(time.Unix(secs, 0))  
+    p(time.Unix(0, nanos))  
+  
 }  
 
 /*package main  
