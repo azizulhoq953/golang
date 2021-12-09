@@ -43,7 +43,7 @@ Warranty string
 }{
 Apps: "Apps Phone History",
 
-Ram :"4GB Ram",
+Ram :"4Gb Ram",
 Rom :"64GB Rom",
 Price: "32000 kip Price",
 Warranty: "1 Years Replacemant Gurranty 2 Years Warranty",
@@ -51,7 +51,7 @@ Warranty: "1 Years Replacemant Gurranty 2 Years Warranty",
 
 }
 
-fmt.Println(b1)
+// fmt.Println(b1)
 fmt.Println(b1.Apps)
 fmt.Println(b1.Ram)
 fmt.Println(b1.Rom)

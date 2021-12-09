@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func address(address int, Name string) {
+func address (address int, Name string) {
 	fmt.Println(address, Name)
 }
 
