@@ -18,6 +18,6 @@ func main(){
 	
 	}(10,21)
 
-//fmt.Println(a(10,20))
+
 fmt.Println(a)
 }
