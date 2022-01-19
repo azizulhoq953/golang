@@ -1,0 +1,24 @@
+INSERT INTO Client(name,mobile,email,address) 
+VALUES("azizul","01706257588","azizulhoq4305@gmail.com", "BARISHAL");
+
+
+INSERT INTO company (company_name,address,website,email,mobile,logo) 
+VALUES ("materos","house #12 Barishal","master_academy.com","azizulhoq4305@gmail.com","01706257588","AH");
+
+INSERT INTO invoice(invoice_number,invoice_date,delivery_date,item_id,price,client_id,invoice_discount,invoice_total) 
+VALUES("123r","1/16/22","2/16/22", 5, 500, 20, 50.5, 5.00);
+
+
+
+keyword=delete:sequence=: UPDATE sqlite_sequence SET seq=0 WHERE name="company";
+
+keyword= DELETE FROM company WHERE id=1;
+
+
+
+INSERT INTO "item"(item_name,item_group_id,price,warranty_period,) 
+VALUES("Laptop","Asus",55000,50);
+
+
+INSERT INTO "item_group"(group_name,description) 
+VALUES("Asus","Inteck");
