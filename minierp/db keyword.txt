@@ -22,3 +22,5 @@ VALUES("Laptop","Asus",55000,50);
 
 INSERT INTO "item_group"(group_name,description) 
 VALUES("Asus","Inteck");
+
+DELETE FROM COMPANY WHERE ID = 7;
