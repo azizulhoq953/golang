@@ -4,8 +4,10 @@ import "fmt"
 
 func main() {
 
-	const height = 100
-	const width = 300
+	// const height = 100
+	// const width = 300
+	var height = 150
+	var width = 350
 
 	area := height * width
 	fmt.Printf("Your Area Of %d", area)
