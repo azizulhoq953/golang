@@ -26,6 +26,6 @@ fmt.Scanln(&SecondName) //usear input
 
 name=Firstname+SecondName;
 
-fmt.Printf("%v",name) //print data
+fmt.Printf("%v ",name) //print data
 
 }
