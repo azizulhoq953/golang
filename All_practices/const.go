@@ -27,6 +27,7 @@ func main() {
 	// fmt.Printf("Enter Area width:")
 	// fmt.Scanf("%f", &width)
 
-	// area := Height * width
+	//  area := Height * width
 	// fmt.Printf("Value Of Area:%.2f ", area)
+
 }
