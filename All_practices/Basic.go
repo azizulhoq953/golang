@@ -2,19 +2,6 @@ package main
 
 import "fmt"
 
-// func main() {
-
-// 	var a int
-// 	fmt.Print("Enter Your Numbers:")
-// 	fmt.Scanf("%d", &a)
-// 	if a%2 == 0 {
-// 		fmt.Printf("Number Is Even:\n")
-// 	} else {
-// 		fmt.Printf("Number Is Odd :\n")
-// 	}
-// 	fmt.Printf("Value Is:%d", a)
-// }
-
 func main() {
 	var input int
 
@@ -37,5 +24,5 @@ func main() {
 	} else {
 		fmt.Print("GPA:5")
 	}
-
+	return 0
 }
