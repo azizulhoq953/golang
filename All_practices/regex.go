@@ -32,5 +32,6 @@ func main() {
 	res := expression.FindAllString(string, 4)
 	for _, attribute := range res {
 		fmt.Println("The number with string is:", attribute)
+
 	}
 }
