@@ -32,7 +32,7 @@ func main() {
 		}
 		fmt.Println(n)
 
-		reqestr := string(bs) //convertion
+		reqestr := string(bs) // convertion to string
 		fmt.Println(reqestr)
 		msg := fmt.Sprintf(`Your Message:%s`, reqestr)
 		conn.Write([]byte(msg))
