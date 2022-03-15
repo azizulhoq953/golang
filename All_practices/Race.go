@@ -13,6 +13,7 @@ var count int
 
 func increment(s string) {
 	for i := 0; i < 10; i++ {
+	
 		x := count
 		x++
 		time.Sleep(time.Duration(rand.Intn(4)) * time.Millisecond)
@@ -24,6 +25,7 @@ func increment(s string) {
 }
 
 func main() {
+
 	wait.Add(2)
 	go increment("Floor:")
 	go increment("Ground:")
