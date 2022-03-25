@@ -29,6 +29,7 @@ import (
 func main() {
 	string := "Ra13, Pa67, S-60 AC-21, UP44"
 	expression := regexp.MustCompile(`[-]?\d[\d]*[\]?[\d{2}]*`)
+
 	res := expression.FindAllString(string, 4)
 	for _, attribute := range res {
 		fmt.Println("The number with string is:", attribute)
