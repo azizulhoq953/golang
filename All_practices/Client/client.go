@@ -19,7 +19,7 @@ func main() {
 	// conn.Write(bs)
 
 	//way-2
-	conn.Write([]byte("Hello \n"))
+	conn.Write([]byte("Hello  My name is Sakib \n"))
 
 	//bs := make([]byte, 1024)
 
