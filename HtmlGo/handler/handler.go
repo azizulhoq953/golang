@@ -13,7 +13,7 @@ func Home(w http.ResponseWriter, r *http.Request){
 	 You can use it to write the response body,
 	  set HTTP headers, and manage the response */
 
-	  render.RenderTemplate(w, "main.gohtml")
+	  render.RenderTemplate(w, "index-3.gohtml")
 
 }
 
@@ -26,4 +26,17 @@ func About(w http.ResponseWriter, r *http.Request){
 	 */
 	 render.RenderTemplate(w, "about.gohtml")
 	           
+}
+
+func Contact(w http.ResponseWriter, r *http.Request){
+
+
+	render.RenderTemplate(w, "contact-2.gohtml")
+}
+
+
+func Login(w http.ResponseWriter, r *http.Request){
+
+
+	render.RenderTemplate(w, "login.gohtml")
 }

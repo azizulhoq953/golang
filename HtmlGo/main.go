@@ -16,6 +16,8 @@ func main()  {
 
 	http.HandleFunc("/",handler.Home)
 	http.HandleFunc("/about",handler.About)
+	http.HandleFunc("/contact",handler.Contact)
+	http.HandleFunc("/login",handler.Login)
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	fmt.Println(fmt.Sprintf("Application Running On %s", portNumber))
 	 http.ListenAndServe(portNumber, nil)
