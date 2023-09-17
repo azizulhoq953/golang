@@ -55,15 +55,22 @@
                                     width="134" id="dLogo" class="main-logo" alt="Linoor - DIgital Agency HTML Template"
                                     title="Linoor - DIgital Agency HTML Template"></a></div>
                     </div>
-                    <form action="#">
-                        <input type="text" placeholder="Enter Email Address *">
-                        <input type="password" placeholder="Your Password *">
+
+                    {{if .Success}}
+                    <h1>Thanks for your message!</h1>
+                    {{else}}
+                    <h1>Contact</h1>
+
+                    <form action="#" method="POST">
+                        <input type="text" name="email" placeholder="Enter Email Address *">
+                        <input type="password" name="password" placeholder="Your Password *">
                         <p class="text-right"><a href="forgot-password.html">Forgot your password?</a></p>
                         <button type='submit' class="theme-btn btn-style-one">
                             <i class="btn-curve"></i>
                             <span class="btn-title">Sign in</span>
                         </button>
                     </form>
+                    {{end}}
                     <p class="signup-link">New to linoor? <a href="register.html">Signup</a></p>
                     <p class="copyright-text">© Copyright 2022 by Layerdrops.com</p><!-- /.copyright-text -->
                 </div><!-- /.login-content__inner -->

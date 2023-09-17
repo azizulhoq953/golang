@@ -3,8 +3,10 @@ package handler
 import (
 	// "fmt"
 	"net/http"
+
 	"github/azizulhoq953/htmltemp/render"
 )
+
 
 
 func Home(w http.ResponseWriter, r *http.Request){ 
@@ -35,8 +37,11 @@ func Contact(w http.ResponseWriter, r *http.Request){
 }
 
 
-func Login(w http.ResponseWriter, r *http.Request){
+// func Login(w http.ResponseWriter, r *http.Request){
 
 
-	render.RenderTemplate(w, "login.gohtml")
-}
+
+
+
+// 	render.RenderTemplate(w, "login.gohtml")
+// }
