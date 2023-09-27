@@ -262,8 +262,7 @@
 							<div class="default-form">
 								{{if .SuccessMessage}}
 								<h1>Message Send Succesfully</h1>
-								{{else}}
-									<h1>Message</h1>
+								
 								<form method="POST" action="" id="contact-form">
 									<div class="row clearfix">
 										<div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -293,6 +292,8 @@
 										</div>
 									</div>
 								</form>
+								{{else}}
+									<h1> not Send Message</h1>
 
 								{{end}}
 							</div>

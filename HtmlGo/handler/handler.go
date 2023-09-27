@@ -4,8 +4,36 @@ import (
 	"fmt"
 	"net/http"
 	"text/template"
-	"github/azizulhoq953/htmltemp/render"
+	// "github/azizulhoq953/htmltemp/HtmlGo/databse"
+	"github/azizulhoq953/htmltemp/HtmlGo/render"
+	 
+	// "github/azizulhoq953/htmltemp"
+	
+	// "main/contacts"
+	// "log"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
+
+type Contacts struct {
+
+	UserName string
+	Email string
+	Message string
+	
+}
+
+type Database struct {
+	*render.Renderer
+}
+
+
+type LoginData struct {
+	
+	Email string
+	Password string
+	
+}
+
 
 
 
@@ -31,11 +59,7 @@ func About(w http.ResponseWriter, r *http.Request){
 }
 
 
-type Contacts struct {
-	UserName string
-	Email string
-	Message string
-}
+
 
 
 func Contact(w http.ResponseWriter, r *http.Request){
@@ -61,28 +85,37 @@ func Contact(w http.ResponseWriter, r *http.Request){
 	// render.RenderTemplate(w, "contact-2.gohtml")
 }
 
-type LoginData struct {
-	Email string
-	Password string
-}
 
 
 
-func Login(w http.ResponseWriter, r *http.Request){
-	tmpl :=template.Must(template.ParseFiles("templates/login.gohtml"))
-	if r.Method != http.MethodPost {
-		tmpl.Execute(w, nil)
-		return
-	}
-	details :=  LoginData{
-		Email: r.FormValue("email"),
-		Password: r.FormValue("password"),
-	}
 
-	_=details
+func Login(databse *render.Renderer) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        if r.Method != http.MethodPost {
+            http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+            return
+        }
 
-	tmpl.Execute(w, struct {Success bool} {true} )
-	fmt.Println("Login Informations", details)
+        email := r.FormValue("email")
+        password := r.FormValue("Password")
+
+        // Check the email and password against the database.
+        // user, err := InitializeDB(db, email)
+		user , err := Database.InitializeDB()
+        if err !=  nil && user.Email == email {
+            http.Error(w, err.Error(), http.StatusInternalServerError)
+            return 
+        }
+
+        if user != nil && user.Password == password {
+            // Authentication successful, redirect to a protected page.
+            http.Redirect(w, r, "/about", http.StatusSeeOther)
+            return
+        }
+
+        // Authentication failed, show an error message.
+        fmt.Fprintf(w, "Authentication failed. Please try again.")
+    }
 }
 
 
