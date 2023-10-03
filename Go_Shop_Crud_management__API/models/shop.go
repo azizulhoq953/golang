@@ -12,7 +12,8 @@ type Shop struct {
 	gorm.Model
 	ProductName string `gorm:"" json:"productname"`
 	Category    string `json:"category"`
-	Aviliable   string `json:"Aviliable"`
+	Aviliable   string `json:"aviliable"`
+	Quantity    string `json:"quantity"`
 }
 
 func init() {

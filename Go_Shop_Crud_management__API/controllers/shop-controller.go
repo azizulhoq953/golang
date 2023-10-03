@@ -79,8 +79,8 @@ func UpdateShop(w http.ResponseWriter, r *http.Request) {
 		shopDetails.Category = updateShop.Category
 
 	}
-	if updateShop.Aviliable != "" {
-		shopDetails.Aviliable = updateShop.Aviliable
+	if updateShop.Quantity != "" {
+		shopDetails.Quantity = updateShop.Quantity
 	}
 	db.Save(&shopDetails)
 
