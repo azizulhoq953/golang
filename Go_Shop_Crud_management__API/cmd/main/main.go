@@ -42,6 +42,7 @@ func setupRouter() *gin.Engine {
 			public.GET("/shop/:id", controllers.GetShopById)
 			public.GET("/all", controllers.GetShop)
 			public.PATCH("/shop/:id", controllers.UpdateShop)
+			public.DELETE("/shop/:id", controllers.Deleted)
 		}
 		// Add the signup route
 		protected := api.Group("/protected").Use(middleware.Authz())
