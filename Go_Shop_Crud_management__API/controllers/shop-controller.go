@@ -4,7 +4,6 @@ import (
 	"crud/shopDB/authjwt"
 	"crud/shopDB/models"
 	"crud/shopDB/pkg/config"
-	"crud/shopDB/utilis"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -16,32 +15,12 @@ import (
 	"gorm.io/gorm"
 )
 
-//Resigtrtion
-// func CreatRegistration(w http.ResponseWriter, r *http.Request) {
-
-// 	CreatRegistration := &models.RegistrationForm{}
-
-// 	fmt.Println(r.Body)
-
-// 	utilis.ParseBody(r, CreatRegistration)
-// 	s := CreatRegistration.CreatRegistration()
-// 	Reg, _ := json.Marshal(s)
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(Reg)
-
-// }
-
-//public data
 // LoginPayload login body
 // LoginPayload is a struct that contains the fields for a user's login credentials
 type LoginPayload struct {
 	Email    string `json:"email" `
 	Password string `json:"password"`
 }
-
-// type getId struct {
-// 	id int64 `json:"id" `
-// }
 
 // LoginResponse token response
 // LoginResponse is a struct that contains the fields for a user's login response
@@ -50,57 +29,6 @@ type LoginResponse struct {
 	RefreshToken string `json:"refreshtoken"`
 }
 
-//end
-// func GetAllRegistration(w http.ResponseWriter, r *http.Request) {
-// 	newRegis := models.GetAllRegistration()
-// 	reg, _ := json.Marshal(newRegis)
-// 	w.Header().Set("Content-Type", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(reg)
-// }
-
-// func Login(w http.ResponseWriter, r *http.Request) {
-
-// 	vars := mux.Vars(r)
-// 	email := vars["email"]
-
-// 	LoginDetails, _ := models.Login(email)
-// 	res, _ := json.Marshal(LoginDetails)
-
-// 	w.Header().Set("Content-Type", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(res)
-// 	fmt.Print(r)
-
-// vars := mux.Vars(r)
-// // password := vars["pass"]
-// // Password, err := strconv.ParseInt(password, 0, 0)
-// // PasswordDetails, _ := models.Login(Password)
-// // pas, _ := json.Marshal(PasswordDetails)
-
-// //email
-// email := vars["email"]
-// // Email, err := strconv.ParseInt(email, 0, 0)
-// // if err != nil {
-// // 	fmt.Println("User Name or password Is Incorrect")
-// // }
-
-// LoginDetails, _ := models.RegistrationForm.Email()
-
-// comb := LoginDetails == email
-// if err != nil {
-// 	fmt.println("userName password Wrong")
-// }
-
-// log, _ := json.Marshal(comb)
-// // pass,_ := models.Login()
-// w.Header().Set("Content-Type", "pkglication/json")
-// w.WriteHeader(http.StatusOK)
-// w.Write(log)
-// // w.Write(pas)
-// //password verify
-
-// }
 func Signup(c *gin.Context) {
 	var user models.RegistrationForm
 	err := c.ShouldBindJSON(&user)
@@ -228,30 +156,11 @@ func Profile(c *gin.Context) {
 
 var NewShop models.Shop
 
-// func GetAllShop(c *gin.Context) {
-// 	mapd := config.GlobalDB
-// 	var Shops []models.Shop
-// 	_, err := mapd.Select(&Shops, "select * from Shop")
-// 	if err == nil {
-// 		c.JSON(200, Shops)
-// 	} else {
-// 		c.JSON(404, gin.H{"error": "user not found"})
-// 	}
-// }
-
 func GetShop(all *gin.Context) {
 	var Shops []models.Shop
 	config.GlobalDB.Find(&Shops)
 	all.JSON(http.StatusOK, gin.H{"AllData": Shops})
 }
-
-// func GetShop(w http.ResponseWriter, r *http.Request) {
-// 	newShop := models.GetAllShop()
-// 	res, _ := json.Marshal(newShop)
-// 	w.Header().Set("Content-Type", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(res)
-// }
 
 func GetShopById(i *gin.Context) {
 
@@ -268,23 +177,7 @@ func GetShopById(i *gin.Context) {
 	// // Return the user ID with a 200 status code
 	// c.JSON(200, user)
 
-	// vars := mux.Vars(r)
-	// shopId := vars["shopId"]
-	// ID, err := strconv.ParseInt(shopId, 0, 0)
-	// if err != nil {
-	// 	fmt.Println("error while parsing")
-	// }
-
-	// shopDetails, _ := models.GetShopById(ID)
-	// res, _ := json.Marshal(shopDetails)
-	// w.Header().Set("Content-Type", "pkglication/json")
-	// w.WriteHeader(http.StatusOK)
-	// w.Write(res)
 }
-
-// func Signup(c *gin.Context) {
-
-// }
 
 func CreateShop(c *gin.Context) {
 
@@ -319,29 +212,6 @@ func CreateShop(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"Message": "Sucessfully Shop Created",
 	})
-
-	// tmpl := template.Must(template.ParseFiles("templates/base.gohtml"))
-	// if r.Method != http.MethodPost {
-	// 	tmpl.Execute(w, nil)
-	// 	return
-	// }
-
-	// CreateShop := &models.Shop{}
-	// utilis.ParseBody(r, CreateShop)
-	// s := CreateShop.CreatShop()
-	// res, _ := json.Marshal(s)
-	// w.WriteHeader(http.StatusOK)
-	// w.Write(res)
-
-	// CreateDetails := &models.details{}
-	// utilis.ParseBody(r, CreateDetails)
-	// i := CreateDetails.CreateDetails()
-	// req, _ := json.Marshal(i)
-	// w.WriteHeader(http.StatusOK)
-	// w.Write(req)
-
-	// w, _ = template.ParseFiles("tutorial.html")
-	// handle.RenderTemplate(w, "base.gohtml")
 
 }
 
@@ -425,81 +295,81 @@ func Deleted(d *gin.Context) {
 
 //User Detais from shop
 
-func CreateDetails(w http.ResponseWriter, r *http.Request) {
-	CreateDetails := &models.Users{}
-	utilis.ParseBody(r, CreateDetails)
-	s := CreateDetails.CreateDetails()
-	res, _ := json.Marshal(s)
-	w.WriteHeader(http.StatusOK)
-	w.Write(res)
-}
+// func CreateDetails(w http.ResponseWriter, r *http.Request) {
+// 	CreateDetails := &models.Users{}
+// 	utilis.ParseBody(r, CreateDetails)
+// 	s := CreateDetails.CreateDetails()
+// 	res, _ := json.Marshal(s)
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write(res)
+// }
 
-func GetAllDetails(w http.ResponseWriter, r *http.Request) {
-	newDetails := models.GetAllDetails()
-	req, _ := json.Marshal(newDetails)
-	w.Header().Set("Content-Type", "pkglication/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(req)
-}
+// func GetAllDetails(w http.ResponseWriter, r *http.Request) {
+// 	newDetails := models.GetAllDetails()
+// 	req, _ := json.Marshal(newDetails)
+// 	w.Header().Set("Content-Type", "pkglication/json")
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write(req)
+// }
 
-func GetDetailsById(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	DetailsId := vars["detailsId"]
-	ID, err := strconv.ParseInt(DetailsId, 0, 0)
-	if err != nil {
-		fmt.Println("error while parsing Id")
-	}
+// func GetDetailsById(w http.ResponseWriter, r *http.Request) {
+// 	vars := mux.Vars(r)
+// 	DetailsId := vars["detailsId"]
+// 	ID, err := strconv.ParseInt(DetailsId, 0, 0)
+// 	if err != nil {
+// 		fmt.Println("error while parsing Id")
+// 	}
 
-	Details, _ := models.GetDetailsById(ID)
-	req, _ := json.Marshal(Details)
-	w.Header().Set("Content-Type", "pkglication/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(req)
-}
+// 	Details, _ := models.GetDetailsById(ID)
+// 	req, _ := json.Marshal(Details)
+// 	w.Header().Set("Content-Type", "pkglication/json")
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write(req)
+// }
 
-func DeleteDetails(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	detailsId := vars["detailsId"]
-	ID, err := strconv.ParseInt(detailsId, 0, 0)
-	if err != nil {
-		fmt.Println("error whhile parsing Delete ")
-	}
+// func DeleteDetails(w http.ResponseWriter, r *http.Request) {
+// 	vars := mux.Vars(r)
+// 	detailsId := vars["detailsId"]
+// 	ID, err := strconv.ParseInt(detailsId, 0, 0)
+// 	if err != nil {
+// 		fmt.Println("error whhile parsing Delete ")
+// 	}
 
-	details := models.DeleteShop(ID)
-	req, _ := json.Marshal(details)
+// 	details := models.DeleteShop(ID)
+// 	req, _ := json.Marshal(details)
 
-	w.Header().Set("content Type ", "pkglication/json")
-	w.Write(req)
-}
+// 	w.Header().Set("content Type ", "pkglication/json")
+// 	w.Write(req)
+// }
 
-func UpdateDetails(w http.ResponseWriter, r *http.Request) {
-	var updateDetails = &models.Users{}
-	utilis.ParseBody(r, updateDetails)
-	vars := mux.Vars(r)
-	detailsId := vars["shopId"]
-	ID, err := strconv.ParseInt(detailsId, 0, 0)
-	if err != nil {
-		fmt.Println("error whhile parsing Update ")
-	}
-	detailsUpdate, db := models.GetDetailsById(ID)
-	if updateDetails.Details != "" {
-		detailsUpdate.Details = updateDetails.Details
+// func UpdateDetails(w http.ResponseWriter, r *http.Request) {
+// 	var updateDetails = &models.Users{}
+// 	utilis.ParseBody(r, updateDetails)
+// 	vars := mux.Vars(r)
+// 	detailsId := vars["shopId"]
+// 	ID, err := strconv.ParseInt(detailsId, 0, 0)
+// 	if err != nil {
+// 		fmt.Println("error whhile parsing Update ")
+// 	}
+// 	detailsUpdate, db := models.GetDetailsById(ID)
+// 	if updateDetails.Details != "" {
+// 		detailsUpdate.Details = updateDetails.Details
 
-	}
-	if updateDetails.From != "" {
-		detailsUpdate.From = updateDetails.From
+// 	}
+// 	if updateDetails.From != "" {
+// 		detailsUpdate.From = updateDetails.From
 
-	}
-	if updateDetails.Country != "" {
-		detailsUpdate.Country = updateDetails.Country
-	}
-	if updateDetails.ImportedCompany != "" {
-		detailsUpdate.Country = updateDetails.ImportedCompany
-	}
-	db.Save(&detailsUpdate)
+// 	}
+// 	if updateDetails.Country != "" {
+// 		detailsUpdate.Country = updateDetails.Country
+// 	}
+// 	if updateDetails.ImportedCompany != "" {
+// 		detailsUpdate.Country = updateDetails.ImportedCompany
+// 	}
+// 	db.Save(&detailsUpdate)
 
-	req, _ := json.Marshal(detailsUpdate)
-	w.Header().Set("content Type ", "pkglication/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write(req)
-}
+// 	req, _ := json.Marshal(detailsUpdate)
+// 	w.Header().Set("content Type ", "pkglication/json")
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write(req)
+// }

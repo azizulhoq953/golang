@@ -133,18 +133,6 @@ func (s *Shop) CreatShop() error {
 	// return s
 }
 
-// func GetAllShop() []Shop {
-// 	var Shops []Shop
-// 	config.GlobalDB.Find(&Shops)
-// 	return Shops
-// }
-
-// func GetShopById(Id int64) (*Shop, *gorm.DB) {
-// 	var getShop Shop
-// 	GlobalDB := GlobalDB.Where("ID=?", Id).Find(&getShop)
-// 	return &getShop, GlobalDB
-// }
-
 func DeleteShop(ID int64) Shop {
 	var shop Shop
 	GlobalDB.Where("ID=?", ID).Delete(shop)
