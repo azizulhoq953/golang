@@ -78,7 +78,7 @@ func (j *JwtWrapper) ValidateToken(signedToken string) (claims *JwtClaim, err er
 		return
 	}
 	if claims.ExpiresAt < time.Now().Local().Unix() {
-		err = errors.New("JWT is expired")
+		err = errors.New("JWT is expired Time")
 		return
 	}
 	return
