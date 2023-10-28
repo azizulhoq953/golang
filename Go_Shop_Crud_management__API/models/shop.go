@@ -32,14 +32,6 @@ type RegistrationForm struct {
 	Password string `json:"password"`
 }
 
-type Users struct { //mustCamelcase model name
-	gorm.Model
-	Details         string `gorm:"" json:"Details"`
-	From            string `json:"From"`
-	Country         string `json:"Country"`
-	ImportedCompany string `json:"ImportedCompany"`
-}
-
 // var details = &Shop.details {
 // 	// gorm.Model
 // 	userName  string `gorm:"" json:"username"`
@@ -54,7 +46,7 @@ func init() {
 	// template.Must(template.New("templates").Parse("html"))
 
 	config.GlobalDB.AutoMigrate(&Shop{})
-	config.GlobalDB.AutoMigrate(&Users{})
+	// config.GlobalDB.AutoMigrate(&Users{})
 	config.GlobalDB.AutoMigrate(&RegistrationForm{})
 
 	// db.AutoMigrate(&Shop{})
@@ -96,13 +88,6 @@ func (user *RegistrationForm) CheckPassword(providedPassword string) error {
 	return nil
 }
 
-//RegistrationForm
-// func (r *RegistrationForm) CreatRegistration() *RegistrationForm {
-// 	db.NewRecord(r)
-// 	db.Create(&r)
-// 	return r
-// }
-
 func GetAllRegistration() []RegistrationForm {
 	var RegistrationForms []RegistrationForm
 	config.GlobalDB.Find(&RegistrationForms)
@@ -115,51 +100,11 @@ func Login(Email string) (*RegistrationForm, *gorm.DB) {
 	return &getemaiPass, GlobalDB
 }
 
-// result := config.GlobalDB.Create(&Regf)
-
-// if result.Error != nil {
-// 	return result.Error
-// }
-// return nil
-
 func (s *Shop) CreatShop() error {
 	result := config.GlobalDB.Create(&s)
 	if result.Error != nil {
 		return result.Error
 	}
 	return nil
-	// 	// GlobalDB.NewRecord(s)
-	// 	// GlobalDB.Create(&s)
-	// return s
-}
 
-func DeleteShop(ID int64) Shop {
-	var shop Shop
-	GlobalDB.Where("ID=?", ID).Delete(shop)
-	return shop
-}
-
-//user_products
-func (i *Users) CreateDetails() *Users {
-	GlobalDB.NewRecord(i)
-	GlobalDB.Create(&i)
-	return i
-}
-
-func GetAllDetails() []Users {
-	var detailse []Users
-	GlobalDB.Find(&detailse)
-	return detailse
-}
-
-func GetDetailsById(Id int64) (*Users, *gorm.DB) {
-	var getdetails Users
-	GlobalDB := GlobalDB.Where("ID=?", Id).Find(&getdetails)
-	return &getdetails, GlobalDB
-}
-
-func DeleteDetails(ID int64) Users {
-	var detailse Users
-	GlobalDB.Where("ID=?", ID).Delete(detailse)
-	return detailse
 }

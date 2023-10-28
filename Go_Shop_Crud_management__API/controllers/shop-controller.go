@@ -3,15 +3,12 @@ package controllers
 import (
 	"crud/shopDB/authjwt"
 	"crud/shopDB/models"
+
 	"crud/shopDB/pkg/config"
-	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/mux"
 	"gorm.io/gorm"
 )
 
@@ -191,15 +188,7 @@ func CreateShop(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	// err = user.HashPassword(user.Password)
-	// if err != nil {
-	// 	log.Println(err.Error())
-	// 	c.JSON(500, gin.H{
-	// 		"Error": "Error Hashing Password",
-	// 	})
-	// 	c.Abort()
-	// 	return
-	// }
+
 	err = user.CreatShop()
 	if err != nil {
 		log.Println(err)
@@ -214,50 +203,6 @@ func CreateShop(c *gin.Context) {
 	})
 
 }
-
-func DeleteShop(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	shopId := vars["shopId"]
-	ID, err := strconv.ParseInt(shopId, 0, 0)
-	if err != nil {
-		fmt.Println("error whhile parsing Delete ")
-	}
-
-	shop := models.DeleteShop(ID)
-	res, _ := json.Marshal(shop)
-
-	w.Header().Set("content Type ", "pkglication/json")
-	w.Write(res)
-}
-
-// func UpdateShop(w http.ResponseWriter, r *http.Request) {
-// 	var updateShop = &models.Shop{}
-// 	utilis.ParseBody(r, updateShop)
-// 	vars := mux.Vars(r)
-// 	shopId := vars["shopId"]
-// 	ID, err := strconv.ParseInt(shopId, 0, 0)
-// 	if err != nil {
-// 		fmt.Println("error whhile parsing Update ")
-// 	}
-// 	shopDetails, db := models.GetShopById(ID)
-// 	if updateShop.ProductName != "" {
-// 		shopDetails.ProductName = updateShop.ProductName
-
-// 	}
-// 	if updateShop.Category != "" {
-// 		shopDetails.Category = updateShop.Category
-
-// 	}
-// 	if updateShop.Quantity != "" {
-// 		shopDetails.Quantity = updateShop.Quantity
-// 	}
-// 	db.Save(&shopDetails)
-
-// 	res, _ := json.Marshal(shopDetails)
-// 	w.Header().Set("content Type ", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(res)
-// }
 
 //update with gin framework
 func UpdateShop(c *gin.Context) {
@@ -292,84 +237,3 @@ func Deleted(d *gin.Context) {
 
 	d.JSON(http.StatusOK, gin.H{"Deleted": true})
 }
-
-//User Detais from shop
-
-// func CreateDetails(w http.ResponseWriter, r *http.Request) {
-// 	CreateDetails := &models.Users{}
-// 	utilis.ParseBody(r, CreateDetails)
-// 	s := CreateDetails.CreateDetails()
-// 	res, _ := json.Marshal(s)
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(res)
-// }
-
-// func GetAllDetails(w http.ResponseWriter, r *http.Request) {
-// 	newDetails := models.GetAllDetails()
-// 	req, _ := json.Marshal(newDetails)
-// 	w.Header().Set("Content-Type", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(req)
-// }
-
-// func GetDetailsById(w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-// 	DetailsId := vars["detailsId"]
-// 	ID, err := strconv.ParseInt(DetailsId, 0, 0)
-// 	if err != nil {
-// 		fmt.Println("error while parsing Id")
-// 	}
-
-// 	Details, _ := models.GetDetailsById(ID)
-// 	req, _ := json.Marshal(Details)
-// 	w.Header().Set("Content-Type", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(req)
-// }
-
-// func DeleteDetails(w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-// 	detailsId := vars["detailsId"]
-// 	ID, err := strconv.ParseInt(detailsId, 0, 0)
-// 	if err != nil {
-// 		fmt.Println("error whhile parsing Delete ")
-// 	}
-
-// 	details := models.DeleteShop(ID)
-// 	req, _ := json.Marshal(details)
-
-// 	w.Header().Set("content Type ", "pkglication/json")
-// 	w.Write(req)
-// }
-
-// func UpdateDetails(w http.ResponseWriter, r *http.Request) {
-// 	var updateDetails = &models.Users{}
-// 	utilis.ParseBody(r, updateDetails)
-// 	vars := mux.Vars(r)
-// 	detailsId := vars["shopId"]
-// 	ID, err := strconv.ParseInt(detailsId, 0, 0)
-// 	if err != nil {
-// 		fmt.Println("error whhile parsing Update ")
-// 	}
-// 	detailsUpdate, db := models.GetDetailsById(ID)
-// 	if updateDetails.Details != "" {
-// 		detailsUpdate.Details = updateDetails.Details
-
-// 	}
-// 	if updateDetails.From != "" {
-// 		detailsUpdate.From = updateDetails.From
-
-// 	}
-// 	if updateDetails.Country != "" {
-// 		detailsUpdate.Country = updateDetails.Country
-// 	}
-// 	if updateDetails.ImportedCompany != "" {
-// 		detailsUpdate.Country = updateDetails.ImportedCompany
-// 	}
-// 	db.Save(&detailsUpdate)
-
-// 	req, _ := json.Marshal(detailsUpdate)
-// 	w.Header().Set("content Type ", "pkglication/json")
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Write(req)
-// }
