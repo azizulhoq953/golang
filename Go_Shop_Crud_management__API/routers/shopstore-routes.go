@@ -23,7 +23,7 @@ func RouteSetup() *gin.Engine { //changes to function name and working func
 			// Add the login route
 			public.POST("/login", controllers.Login)
 			// Add the signup route
-			public.POST("/signup", controllers.Signup)
+			public.POST("/signup", controllers.Signup) //not it's a POST Method
 			// add the shop and Details Router
 			public.POST("/shop", controllers.CreateShop)
 			//ShopById
