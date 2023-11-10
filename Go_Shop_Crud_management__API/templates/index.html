@@ -1,0 +1,9 @@
+<html>
+    {{ range $Shop := .Shops }}
+    <h1>{{ .ProductName }}</h1>
+    <h2>{{ .Category }}</h2>
+    <h3>{{ .Aviliable }}</h3>
+    <h4>{{ .Quantity }}</h4>
+    <hr/>
+    {{ end }}
+</html>

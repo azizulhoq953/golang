@@ -28,14 +28,14 @@ type LoginResponse struct {
 
 func Signup(c *gin.Context) {
 	//try to template add
-	gin.SetMode(gin.DebugMode)
-	r := gin.Default()
-	r.LoadHTMLGlob("templates/*.html")
-	r.GET("/page1", func(c *gin.Context) {
-		c.HTML(200, "page1.html", gin.H{
-			"title": "Page 1 IS HERE",
-		})
-	})
+	// gin.SetMode(gin.DebugMode)
+	// r := gin.Default()
+	// r.LoadHTMLGlob("templates/*.html")
+	// r.GET("/page1", func(c *gin.Context) {
+	// 	c.HTML(200, "page1.html", gin.H{
+	// 		"title": "Page 1 IS HERE",
+	// 	})
+	// })
 	//tmp end
 	var user models.RegistrationForm
 	err := c.ShouldBindJSON(&user)

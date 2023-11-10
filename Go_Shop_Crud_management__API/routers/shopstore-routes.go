@@ -3,17 +3,42 @@ package routes
 import (
 	"crud/shopDB/controllers"
 	"crud/shopDB/middleware"
+	"crud/shopDB/models"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func RouteSetup() *gin.Engine { //changes to function name and working func
 	// Create a new router
+	// n := gin.Default()
+	// // Add a welcome route
+	// n.GET("/", func(c *gin.Context) {
+	// 	c.String(200, "Welcome To This Website")
+	// })
 	n := gin.Default()
-	// Add a welcome route
-	n.GET("/", func(c *gin.Context) {
-		c.String(200, "Welcome To This Website")
+	n.LoadHTMLFiles("templates/index.html")
+
+	Shops := make([]models.Shop, 0)
+	Shops = append(Shops, models.Shop{
+		ProductName: "ProductName 1",
+		Category:    "Category 1",
+		Aviliable:   "Aviliable 1",
+		Quantity:    "Quantity 1",
 	})
+	Shops = append(Shops, models.Shop{
+		ProductName: "ProductName 1",
+		Category:    "Category 1",
+		Aviliable:   "Aviliable 1",
+		Quantity:    "Quantity 1",
+	})
+
+	n.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"Shops": Shops,
+		})
+	})
+
 	// Create a new group for the API
 	api := n.Group("/api")
 	{
