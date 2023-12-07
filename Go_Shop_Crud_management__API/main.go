@@ -1,41 +1,24 @@
 package main
 
-import (
-	routes "crud/shopDB/routers"
-)
+import "net/http"
 
 func main() {
 	println("Application Is Running")
-	// r := mux.NewRouter()
-	// routes.RegisterShopStoreRoutes(r)
 
-	// r := gin.Default()
-	// r.LoadHTMLFiles("templates/index.html")
+	staticDir := "./templates"
 
-	// Shops := make([]models.Shop, 0)
-	// Shops = append(Shops, models.Shop{
-	// 	ProductName: "ProductName 1",
-	// 	Category:    "Category 1",
-	// 	Aviliable:   "Aviliable 1",
-	// 	Quantity:    "Quantity 1",
-	// })
-	// Shops = append(Shops, models.Shop{
-	// 	ProductName: "ProductName 1",
-	// 	Category:    "Category 1",
-	// 	Aviliable:   "Aviliable 1",
-	// 	Quantity:    "Quantity 1",
-	// })
+	// Create a file server for the static directory
+	fileServer := http.FileServer(http.Dir(staticDir))
 
-	// r.GET("/shops", func(c *gin.Context) {
-	// 	c.HTML(http.StatusOK, "index.html", gin.H{
-	// 		"Shops": Shops,
-	// 	})
-	// })
+	// Register the file server handler and serve on the root URL
+	http.Handle("/", http.StripPrefix("/", fileServer))
 
-	// r := setupRouter()
-	n := routes.RouteSetup()
+	// Start the web server on port 8080
+	http.ListenAndServe(":8080", nil)
 
-	n.Run(":8080")
+	// n := routes.RouteSetup()
+
+	// n.Run(":8080")
 	// http.Handle("/", n)
 	// http.ListenAndServe("localhost:8080", r)
 

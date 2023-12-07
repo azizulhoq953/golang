@@ -16,6 +16,17 @@ func RouteSetup() *gin.Engine { //changes to function name and working func
 	// n.GET("/", func(c *gin.Context) {
 	// 	c.String(200, "Welcome To This Website")
 	// })
+
+	// temp, err := template.ParseGlob("templates/*")
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+	// // Simply calling execute parses the first file in the directory
+	// err = temp.Execute(os.Stdout, nil)
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+
 	n := gin.Default()
 	n.LoadHTMLFiles("templates/index.html")
 

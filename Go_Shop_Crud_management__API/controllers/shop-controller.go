@@ -38,7 +38,10 @@ func Signup(c *gin.Context) {
 	// })
 	//tmp end
 	var user models.RegistrationForm
+
 	err := c.ShouldBindJSON(&user)
+
+	
 
 	if err != nil {
 		log.Println(err)
