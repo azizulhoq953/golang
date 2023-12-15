@@ -2,7 +2,6 @@ package migrate
 
 import (
 	"Go_3-Month/golang/go-crud/initializers"
-	"Go_3-Month/golang/go-crud/models"
 )
 
 func init() {
@@ -10,6 +9,6 @@ func init() {
 	initializers.ConnectToDB()
 }
 
-func main() {
-	initializers.DB.AutoMigrate(&models.Post{})
-}
+// func main() {
+// 	initializers.DB.AutoMigrate(&models.Post{})
+// }

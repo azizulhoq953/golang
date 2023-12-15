@@ -1,4 +1,4 @@
-module github/azizulhoq953/htmltemp/HtmlGo
+module htmltemp/HtmlGo
 
 go 1.18
 

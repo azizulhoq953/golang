@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	routes "crud/shopDB/routers"
+	"net/http"
+)
 
 func main() {
 	println("Application Is Running")
@@ -14,11 +17,11 @@ func main() {
 	http.Handle("/", http.StripPrefix("/", fileServer))
 
 	// Start the web server on port 8080
-	http.ListenAndServe(":8080", nil)
+	// http.ListenAndServe(":8080", nil)
 
-	// n := routes.RouteSetup()
+	n := routes.RouteSetup()
 
-	// n.Run(":8080")
+	n.Run(":8080")
 	// http.Handle("/", n)
 	// http.ListenAndServe("localhost:8080", r)
 

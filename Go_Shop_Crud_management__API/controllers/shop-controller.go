@@ -41,7 +41,8 @@ func Signup(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&user)
 
-	
+	r := gin.Default()
+	r.LoadHTMLGlob("login.html")
 
 	if err != nil {
 		log.Println(err)

@@ -43,6 +43,7 @@ func InitDatabase() (err error) {
 	if err != nil {
 		log.Fatal("Error reading .env file")
 	}
+	print("this is config", config)
 	// Create the data source name (DSN) using the environment variables
 	dsn := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",

@@ -2,16 +2,15 @@ package main
 
 import (
 	"Go_3-Month/golang/go-crud/controllers"
-	"Go_3-Month/golang/go-crud/initializers"
 
 	"github.com/gin-gonic/gin"
 )
 
-func init() {
-	initializers.LoadEnvVariables()
-	initializers.ConnectToDB()
+// func init() {
+// 	initializers.LoadEnvVariables()
+// 	initializers.ConnectToDB()
 
-}
+// }
 
 func main() {
 	r := gin.Default()

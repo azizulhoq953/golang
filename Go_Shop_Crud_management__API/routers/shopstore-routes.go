@@ -28,7 +28,7 @@ func RouteSetup() *gin.Engine { //changes to function name and working func
 	// }
 
 	n := gin.Default()
-	n.LoadHTMLFiles("templates/index.html")
+	// n.LoadHTMLFiles("templates/index.html")
 
 	Shops := make([]models.Shop, 0)
 	Shops = append(Shops, models.Shop{

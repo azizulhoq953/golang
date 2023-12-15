@@ -1,13 +1,14 @@
 package main
 
-import(
+import (
 	"fmt"
 	"net/http"
+
 	// "text/template"
-	"github/azizulhoq953/htmltemp/HtmlGo/handler"
-	
+	"htmltemp/HtmlGo/handler"
+
+	database "htmltemp/HtmlGo/databse"
 	"log"
-	"github/azizulhoq953/htmltemp/HtmlGo/databse"
 	// "github.com/yourusername/project-folder/render"
 	// "github/azizulhoq953/htmltemp/form"
 )
@@ -17,31 +18,30 @@ import(
 // 	Password string
 // }
 
+const portNumber = ":8080"
 
-const portNumber =":8080"
-func main()  {
+func main() {
 
-	fs :=http.FileServer(http.Dir("assets"))
+	fs := http.FileServer(http.Dir("assets"))
 	// tmpl :=template.Must(template.ParseFiles("templates/login.gohtml"))
-
 
 	// database, err := DB.InitDB()
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
 	// defer database.Close()
-	database, err := databse.InitializeDB()
+	database, err := database.InitializeDB()
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer database.Close()
 	// Create a renderer.
-handler := handler.NewHandler()
+	// red := handler.Contacts()
 
-	http.HandleFunc("/",handler.Home)
-	http.HandleFunc("/about",handler.About)
-	http.HandleFunc("/contact",handler.Contact)
-	http.HandleFunc("/login",handler.Login)
+	http.HandleFunc("/", handler.Home)
+	http.HandleFunc("/about", handler.About)
+	http.HandleFunc("/contact", handler.Contact)
+	// http.HandleFunc("/login", handler.Login)
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	fmt.Println(fmt.Sprintf("Application Running On %s", portNumber))
@@ -49,7 +49,6 @@ handler := handler.NewHandler()
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 	// http.HandleFunc("/login",func(w http.ResponseWriter, r *http.Request){
 	// 	if r.Method != http.MethodPost {
@@ -66,18 +65,16 @@ handler := handler.NewHandler()
 	// 	tmpl.Execute(w, struct {Success bool} {true} )
 	// 	fmt.Println("Login Informations", details)
 	// })
-//start dbms
+	//start dbms
 
+	// database, err := db.InitDB()
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
+	// 	defer database.Close()
 
-
-// database, err := db.InitDB()
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	defer database.Close()
-
-// 	// Create a renderer.
-// 	renderer := render.NewRenderer()
+	// 	// Create a renderer.
+	// 	renderer := render.NewRenderer()
 
 	// Register routes and start the server.
 	// http.HandleFunc("/", render.Login(handler))
@@ -91,10 +88,4 @@ handler := handler.NewHandler()
 	// 	log.Fatal(err)
 	// }
 
-
-
-
-
-	 
-	
 }
