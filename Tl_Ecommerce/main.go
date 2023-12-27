@@ -3,7 +3,6 @@ package main
 import (
 	"azizulhoq953/golang/Tl_Ecommerce/controllers"
 	"azizulhoq953/golang/Tl_Ecommerce/database"
-	"azizulhoq953/golang/Tl_Ecommerce/middleware"
 	"azizulhoq953/golang/Tl_Ecommerce/routes"
 	"log"
 	"os"
@@ -22,7 +21,7 @@ func main() {
 	router := gin.New()
 	router.Use(gin.Logger())
 	routes.UserRoutes(router)
-	router.Use(middleware.Authentication())
+	// router.Use(middleware.Authentication())
 	router.GET("/addtocart", app.AddToCart())
 	router.GET("/removeitem", app.RemoveItem())
 	router.GET("/listcart", controllers.GetItemFromCart())

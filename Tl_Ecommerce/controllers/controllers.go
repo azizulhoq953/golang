@@ -151,6 +151,44 @@ func ProductViewerAdmin() gin.HandlerFunc {
 	}
 }
 
+// Delete product
+func DeleteProductAdmin() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+
+		// Get product ID from URL parameters
+		productID := c.Param("id")
+		if productID == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Product ID is required"})
+			cancel() // Cancel the context in case of an error
+			return
+		}
+
+		// Convert product ID string to ObjectID
+		objID, err := primitive.ObjectIDFromHex(productID)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Product ID"})
+			cancel() // Cancel the context in case of an error
+			return
+		}
+
+		// Define filter for deleting the product
+		filter := bson.M{"_id": objID}
+
+		// Perform deletion operation
+		_, anyerr := ProductCollection.DeleteOne(ctx, filter)
+		if anyerr != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete product"})
+			cancel() // Cancel the context in case of an error
+			return
+		}
+
+		// Cancel the context after successful deletion
+		cancel()
+		c.JSON(http.StatusOK, "Product deleted successfully")
+	}
+}
+
 func SearchProduct() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var productlist []models.Product
@@ -181,6 +219,42 @@ func SearchProduct() gin.HandlerFunc {
 	}
 }
 
+// func SearchProductByQuery() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		var searchproducts []models.Product
+// 		queryParam := c.Query("name")
+// 		if queryParam == "" {
+// 			log.Println("query is empty")
+// 			c.Header("Content-Type", "application/json")
+// 			c.JSON(http.StatusNotFound, gin.H{"Error": "Invalid Search Index"})
+// 			c.Abort()
+// 			return
+// 		}
+// 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+// 		defer cancel()
+// 		searchquerydb, err := ProductCollection.Find(ctx, bson.M{"product_name": bson.M{"$regex": queryParam}})
+// 		if err != nil {
+// 			c.IndentedJSON(404, "something went wrong in fetching the dbquery")
+// 			return
+// 		}
+// 		err = searchquerydb.All(ctx, &searchproducts)
+// 		if err != nil {
+// 			log.Println(err)
+// 			c.IndentedJSON(400, "invalid")
+// 			return
+// 		}
+// 		defer searchquerydb.Close(ctx)
+// 		if err := searchquerydb.Err(); err != nil {
+// 			log.Println(err)
+// 			c.IndentedJSON(400, "invalid request")
+// 			return
+// 		}
+// 		defer cancel()
+// 		c.IndentedJSON(200, searchproducts)
+// 	}
+// }
+
+//ignore authorized key
 func SearchProductByQuery() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var searchproducts []models.Product
@@ -192,25 +266,40 @@ func SearchProductByQuery() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+
+		// You can remove the authorization check if you want to ignore it
+		// authorizationHeader := c.GetHeader("Authorization")
+		// if authorizationHeader == "" {
+		// 	c.Header("Content-Type", "application/json")
+		// 	c.JSON(http.StatusUnauthorized, gin.H{"Error": "No Authorization Header Provided"})
+		// 	c.Abort()
+		// 	return
+		// }
+
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
+
 		searchquerydb, err := ProductCollection.Find(ctx, bson.M{"product_name": bson.M{"$regex": queryParam}})
 		if err != nil {
 			c.IndentedJSON(404, "something went wrong in fetching the dbquery")
 			return
 		}
+
 		err = searchquerydb.All(ctx, &searchproducts)
 		if err != nil {
 			log.Println(err)
 			c.IndentedJSON(400, "invalid")
 			return
 		}
+
 		defer searchquerydb.Close(ctx)
+
 		if err := searchquerydb.Err(); err != nil {
 			log.Println(err)
 			c.IndentedJSON(400, "invalid request")
 			return
 		}
+
 		defer cancel()
 		c.IndentedJSON(200, searchproducts)
 	}
