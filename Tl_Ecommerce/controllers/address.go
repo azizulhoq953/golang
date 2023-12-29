@@ -65,6 +65,7 @@ func AddAddress() gin.HandlerFunc {
 			c.IndentedJSON(400, "Not Allowed ")
 		}
 		defer cancel()
+		println("Successfully Add Address")
 		ctx.Done()
 	}
 }
