@@ -16,8 +16,16 @@ func main() {
 		port = "8080"
 	}
 
-	app := controllers.NewApplication(database.ProductData(database.Client, "Products"), database.UserData(database.Client, "Users"))
+	productData := database.ProductData(database.Client, "Products")
+	userData := database.UserData(database.Client, "Users")
+	// addressData := database.AddressData(database.Client, "Addresses")
+	// orderData := database.OrderData(database.Client, "Orders")
+	// paymentData := database.PaymentData(database.Client, "Payments")
 
+	// app := controllers.NewApplication(database.ProductData(database.Client, "Products"), database.UserData(database.Client, "Users"))
+	app := controllers.NewApplication(productData, userData)
+	// discountedPrice := models.Product(CalculateDiscountedPrice())
+	//, , paymentData,
 	router := gin.New()
 	router.Use(gin.Logger())
 	routes.UserRoutes(router)
