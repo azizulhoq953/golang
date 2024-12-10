@@ -1,13 +1,14 @@
 package main
 
 import (
-	"azizulhoq953/golang/Tl_Ecommerce/controllers"
-	"azizulhoq953/golang/Tl_Ecommerce/database"
-	"azizulhoq953/golang/Tl_Ecommerce/routes"
 	"log"
 	"os"
 
 	"github.com/gin-gonic/gin"
+
+	"azizulhoq953/golang/Tl_Ecommerce/controllers"
+	"azizulhoq953/golang/Tl_Ecommerce/database"
+	"azizulhoq953/golang/Tl_Ecommerce/routes"
 )
 
 func main() {

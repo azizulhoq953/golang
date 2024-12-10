@@ -1,0 +1,6 @@
+all-prosuct
+http://localhost:8080/users/productview
+add-products
+http://localhost:8080/admin/addproduct
+delete
+ http://localhost:8080/products/67580b18b6b92b3613850903

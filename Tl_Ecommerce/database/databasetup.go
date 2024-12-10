@@ -1,10 +1,17 @@
 package database
 
 // import (
-// 	// "github.com/jinzhu/gorm"
 // 	"fmt"
 // 	"log"
+//
+//
+//
+//
+//
+//
+//
 
+// 	// "github.com/jinzhu/gorm"
 // 	"github.com/joho/godotenv"
 // 	// _ "github.com/lib/pq"
 // 	"gorm.io/driver/postgres"
@@ -61,7 +68,7 @@ import (
 )
 
 func DBSet() *mongo.Client {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://azizulhoq953:azizulhoq953@cluster0.ajm4cxn.mongodb.net/?retryWrites=true&w=majority")) //mongodb://development:testpassword@localhost:27017
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://azizulhoq953:t5D3fniTQdIwb0Ff@cluster0.bo5g0gy.mongodb.net/tlcommerce")) //mongodb://development:testpassword@localhost:27017
 	if err != nil {
 		log.Fatal(err)
 	}
